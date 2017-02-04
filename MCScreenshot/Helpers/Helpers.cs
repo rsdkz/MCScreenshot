@@ -20,7 +20,10 @@ namespace MCScreenshot.Helpers
         private static extern unsafe bool GetClientRect(IntPtr hWnd, out RECT lpRect);
 
         [DllImport("user32.dll")]
-        private static extern bool ClientToScreen(IntPtr hWnd, ref Point lpPoint);
+        private static extern unsafe bool ClientToScreen(IntPtr hWnd, ref Point lpPoint);
+
+        [DllImport("user32.dll")]
+        private static extern unsafe IntPtr GetForegroundWindow();
 
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
@@ -45,8 +48,20 @@ namespace MCScreenshot.Helpers
 
         public static Rectangle GetClientRectangle(IntPtr hWnd)
         {
-            // wip
-            return new Rectangle();
+            RECT rect; Rectangle rectangle = new Rectangle(); Point point = new Point();
+            GetClientRect(hWnd, out rect); ClientToScreen(hWnd, ref point);
+
+            int rectWidth = rect.Right - rect.Left; int rectHeight = rect.Bottom - rect.Top;
+
+            rectangle.X = point.X; rectangle.Y = point.Y;
+            rectangle.Width = rectWidth; rectangle.Height = rectHeight;
+
+            return rectangle;
+        }
+
+        public static IntPtr _GetForegroundWindow()
+        {
+            return GetForegroundWindow();
         }
     }
 }

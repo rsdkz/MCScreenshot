@@ -12,40 +12,16 @@ namespace MCScreenshot.Screenshot
 {
     public class Screenshot
     {
-
-        /* Pinvoke 'n Stuff */
-        [DllImport("user32.dll")]
-        static extern unsafe bool GetClientRect(IntPtr hWnd, out RECT lpRect);
-
-        [DllImport("user32.dll")]
-        static extern bool ClientToScreen(IntPtr hWnd, ref Point lpPoint);
-
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetForegroundWindow();
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct RECT
-        {
-            public int Left;
-            public int Top;
-            public int Right;
-            public int Bottom;
-        }
-        /* End of Pinvoke 'n Stuff */
-
         public static Bitmap CreateScreenshot(IntPtr hwnd)
         {
-            if (GetForegroundWindow() == hwnd)
+            if (Helpers.Helpers._GetForegroundWindow() == hwnd)
             {
                 /* get window client rectangle and point */
-                RECT rect; Point point = new Point();
-                GetClientRect(hwnd, out rect); ClientToScreen(hwnd, ref point);
-
-                int rectWidth = rect.Right - rect.Left; int rectHeight = rect.Bottom - rect.Top;
+                Rectangle rectangle = Helpers.Helpers.GetClientRectangle(hwnd);
                 /* end of that */
 
                 /* bitmap/graphics stuff */
-                Bitmap bmp = new Bitmap(rectWidth, rectHeight);
+                Bitmap bmp = new Bitmap(rectangle.Width, rectangle.Height);
                 Graphics grp = Graphics.FromImage(bmp);
                 /* end of that */
 
@@ -61,7 +37,7 @@ namespace MCScreenshot.Screenshot
                 /* end of that */
 
                 /* copy screen pixel's and draw image and text */
-                grp.CopyFromScreen(point.X, point.Y, 0, 0, bmp.Size, CopyPixelOperation.SourceCopy);
+                grp.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, bmp.Size, CopyPixelOperation.SourceCopy);
                 grp.DrawImage(MCScreenshot.Properties.Resources.MCSCREENSHOT, new Rectangle(15, 15, 200, 25));
                 /* end of that, and return bitmap */
 
