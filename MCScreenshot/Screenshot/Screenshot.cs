@@ -27,13 +27,14 @@ namespace MCScreenshot.Screenshot
 
                 /* quality and stuff */
                 grp.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+
                 grp.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+
+                grp.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
 
                 grp.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
 
                 grp.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-
-                grp.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
                 /* end of that */
 
                 /* copy screen pixel's and draw image and text */
