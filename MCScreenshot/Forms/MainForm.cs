@@ -12,15 +12,11 @@ using MCScreenshot.Helpers;
 
 namespace MCScreenshot.Forms
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
-
         private Helpers.LLKeyboardHook llk = new Helpers.LLKeyboardHook(); // low-level keyboard hook for registering keys outside app
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
 
@@ -31,6 +27,8 @@ namespace MCScreenshot.Forms
         {
             if (e.KeyPressed == System.Windows.Input.Key.F12)
             {
+
+                /* currently supports Minecraft 1.11.2 only, I'll be implementing more methods to find Minecraft */
                 if (Helpers.Helpers.FindWindowByTitle("Minecraft 1.11.2") != new IntPtr(-1))
                 {
                     if (Screenshot.Screenshot.CreateScreenshot(Helpers.Helpers.FindWindowByTitle("Minecraft 1.11.2")) != null)
