@@ -22,5 +22,41 @@ namespace MCScreenshot.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ScreenshotSavePath {
+            get {
+                return ((string)(this["ScreenshotSavePath"]));
+            }
+            set {
+                this["ScreenshotSavePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string WatermarkImagePath {
+            get {
+                return ((string)(this["WatermarkImagePath"]));
+            }
+            set {
+                this["WatermarkImagePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultScreenshotKey {
+            get {
+                return ((string)(this["DefaultScreenshotKey"]));
+            }
+            set {
+                this["DefaultScreenshotKey"] = value;
+            }
+        }
     }
 }

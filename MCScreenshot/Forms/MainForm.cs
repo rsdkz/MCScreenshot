@@ -32,7 +32,7 @@ namespace MCScreenshot.Forms
                 if (Helpers.Helpers.FindWindowByTitle("Minecraft 1.11.2") != new IntPtr(-1))
                 {
                     if (Screenshot.Screenshot.CreateScreenshot(Helpers.Helpers.FindWindowByTitle("Minecraft 1.11.2")) != null)
-                        Screenshot.Screenshot.CreateScreenshot(Helpers.Helpers.FindWindowByTitle("Minecraft 1.11.2")).Save(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\\MCScreenshot\\MCScreenshot_" + DateTime.Now.ToFileTime() + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                        Screenshot.Screenshot.CreateScreenshot(Helpers.Helpers.FindWindowByTitle("Minecraft 1.11.2"), Screenshot.Screenshot.UpscaleMode.HighHD).Save(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\\MCScreenshot\\MCScreenshot_" + DateTime.Now.ToFileTime() + ".png", System.Drawing.Imaging.ImageFormat.Png);
                 }
             }
         }
